@@ -43,17 +43,37 @@ class App extends React.Component{
               country: data.sys.country,
               sunrise: sunrise_date,//data.sys.sunrise,
               sunset: sunset_date, //data.sys.sunset,
-              error: ""          
+              error: undefined         
 
           });  
+        } else {
+          this.setState({
+
+            temp: undefined,
+            city: undefined,
+            country: undefined,
+            sunrise: undefined,
+            sunset: undefined,
+            error: "Введите город!"
+
+          });
         }      
 
     }
     render(){
         //console.log(this.props);
         return (
-            <div>
-              <Info />
+          <div>
+          <div className="wrapper">
+            <div className="main">
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-5 title-container">
+                  <Info />
+                  </div>
+                  <div className="col-sm-7 form-container">
+              
+              
               <Form weatherMethod={this.gettingWeather} />
               
               <Weather  
@@ -66,7 +86,12 @@ class App extends React.Component{
                 error={this.state.error}
               />
 
+              </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
         );
     }
